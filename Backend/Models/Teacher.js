@@ -7,7 +7,10 @@ const teacherSchema = new mongoose.Schema({
   },
   email: { type: String, required: true, unique: true },
   department: { type: mongoose.Schema.Types.ObjectId, ref: 'Department', required: true },
-  courses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+  courses: [{
+    courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: true },
+    courseName: { type: String, required: true },
+  }],
   
 });
 
