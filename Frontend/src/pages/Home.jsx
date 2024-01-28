@@ -16,7 +16,7 @@ const Home = () => {
                 <div className='login_container'>
                     <h3>Admin Login</h3>
                     <p>
-                        <Link to="/admin-login">Admin Login</Link>
+                        <Link to="/admin">Admin Login</Link>
                     </p>
                 </div>
 

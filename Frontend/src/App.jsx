@@ -8,6 +8,8 @@ import {
   Route,
   Navigate
 } from 'react-router-dom';
+import AdminHome from './pages/Admin/AdminHome';
+import AdminContainer from './container/AdminContainer';
 
 function App() {
 
@@ -16,7 +18,8 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          {/* <Route exact path="/admin" element={<Admin />} /> */}
+          <Route path="/admin" element={<AdminContainer/>}/>
+          {/* <Route exact path="/admin" element={<AdminHome />} /> */}
 
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Routes>
