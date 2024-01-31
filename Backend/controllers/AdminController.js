@@ -61,4 +61,4 @@ const getAdminDetail = async (req, res) => {
 
 
 
-module.exports = { adminRegister, adminLogIn, getAdminDetail };
+module.exports = {adminLogIn, getAdminDetail };

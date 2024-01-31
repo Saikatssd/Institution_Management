@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import AdminHome from './pages/Admin/AdminHome';
 import AdminContainer from './container/AdminContainer';
+import Dashboard from './components/Dashboard';
 
 function App() {
 
@@ -18,7 +19,8 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/admin" element={<AdminContainer/>}/>
+          {/* <Route path="/admin" element={<AdminContainer/>}/> */}
+          <Route path="/admin" element={<Dashboard/>}/>
           {/* <Route exact path="/admin" element={<AdminHome />} /> */}
 
           <Route path="*" element={<Navigate to="/" />}></Route>
