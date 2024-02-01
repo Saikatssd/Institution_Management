@@ -6,35 +6,21 @@ import { Link } from 'react-router-dom';
 const Home = () => {
 
     return (
-        <div className="home_container">
-
-            <h2>Login Options:</h2>
-
-
-            <div >
-
-                <div className='login_container'>
-                    <h3>Admin Login</h3>
-                    <p>
-                        <Link to="/admin">Admin Login</Link>
-                    </p>
+        <div className="container mx-auto mt-20 text-center p-8 bg-white rounded shadow-md">
+            <h1 className="text-4xl font-extrabold mb-6">Institution Management System</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="bg-blue-200 hover:bg-blue-300 p-6 rounded-lg transition">
+                    <Link to="/admin" className="text-blue-800 font-bold">Admin Login</Link>
+              </div>
+                <div className="bg-green-200 hover:bg-green-300 p-6 rounded-lg transition">
+                    <Link href="/teacher" className="text-green-800 font-bold">Teacher Login</Link>
                 </div>
-
-                <div className='login_container'>
-                    <h3>Teacher Login</h3>
-                    <p>
-                        <Link to="/teacher-login">Teacher Login</Link>
-                    </p>
-                </div>
-
-                <div className='login_container'>
-                    <h3>Student Login</h3>
-                    <p>
-                        <Link to="/student-login">Student Login</Link>
-                    </p>
+                <div className="bg-yellow-200 hover:bg-yellow-300 p-6 rounded-lg transition">
+                    <Link href="/student" className="text-yellow-800 font-bold">Student Login</Link>
                 </div>
             </div>
         </div>
+
     );
 };
 

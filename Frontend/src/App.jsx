@@ -11,6 +11,9 @@ import {
 import AdminHome from './pages/Admin/AdminHome';
 import AdminContainer from './container/AdminContainer';
 import Dashboard from './components/Dashboard';
+import TeacherDashboard from './pages/Teacher/TeacherDashboard';
+import StudentDashboard from './pages/Student/StudentDashboard';
+import AdminDashboard from './pages/Admin/AdminDashboard';
 
 function App() {
 
@@ -19,10 +22,9 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          {/* <Route path="/admin" element={<AdminContainer/>}/> */}
-          <Route path="/admin" element={<Dashboard/>}/>
-          {/* <Route exact path="/admin" element={<AdminHome />} /> */}
-
+          <Route exact path="/admin" element={<AdminDashboard/>}/>
+          <Route exact path="/teacher" element={<TeacherDashboard />} />
+          <Route exact path="/student" element={<StudentDashboard />} />
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Routes>
       </Router>
