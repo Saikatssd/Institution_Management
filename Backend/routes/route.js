@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 
-const {adminLogIn, getAdminDetail} = require('../controllers/AdminController.js');
+const { adminRegister , adminLogIn, getAdminDetail } = require('../controllers/AdminController.js');
 
 // const { sclassCreate, sclassList, deleteSclass, deleteSclasses, getSclassDetail, getSclassStudents } = require('../controllers/class-controller.js');
 // const { complainCreate, complainList } = require('../controllers/complain-controller.js');
@@ -27,7 +27,7 @@ const {adminLogIn, getAdminDetail} = require('../controllers/AdminController.js'
 
 
 // Admin
-// router.post('/AdminReg', adminRegister);
+router.post('/AdminReg', adminRegister);
 router.post('/AdminLogin', adminLogIn);
 
 router.get("/Admin/:id", getAdminDetail)

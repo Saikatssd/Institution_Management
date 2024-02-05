@@ -1,11 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require("cors");
 
 
 const routes = require('./routes/route.js');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+app.use(express.json());
+app.use(cors());
 
 // // Connect to MongoDB
 mongoose
@@ -17,10 +21,18 @@ mongoose
   .catch((err) => console.log("NOT CONNECTED TO NETWORK", err))
 
 // // Middleware
-app.use(express.json());
+
 app.use('/', routes);
 
+// app.use(
+//   cors({
+//     credentials: true,
+//   })
+// );
 // app.use('/api/server', require('./server'))
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
 
 // start server
 app.listen(PORT, () => {
