@@ -36,11 +36,24 @@ const AdminLogin = () => {
 
     }
     catch (error) {
-      // toast.error(error.response.data.message);
-      toast.error("error message");
-      console.log("error")
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        const { data, status, statusText } = error.response;
+        console.error(`Server responded with error: ${status} - ${statusText}`);
+        console.error(data); // Log the response data for further investigation
+        toast.error(`Server error: ${status} - ${statusText}`);
+      } else if (error.request) {
+        // The request was made but no response was received
+        console.error('No response received from the server');
+        toast.error('No response received from the server');
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        console.error('Error setting up the request:', error.message);
+        toast.error('Error setting up the request');
+      }
     }
-    console.log('Admin login clicked with email:', email, 'and password:', password);
+    // console.log('Admin login clicked with email:', email, 'and password:', password);
 
 
   };

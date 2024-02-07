@@ -1,8 +1,10 @@
 const bcrypt = require("bcrypt");
+// const cookies = require("cookie-parser")
+
 const Admin = require('../models/AdminSchema.js');
 // import ErrorHandler from "../middlewares/error.js";
-const { ErrorHandler } = require('../utils/error.js');
-const  sendCookie  = require("../utils/feature.js");
+const { ErrorHandler, errorMiddleware } = require('../middlewares/error.js');
+const sendCookie = require("../utils/feature.js");
 // import { ErrorHandler } from '../middlewares/error.js';
 
 // const adminRegister = async (req, res) => {
@@ -56,16 +58,19 @@ const adminLogIn = async (req, res, next) => {
 
         const admin = await Admin.findOne({ email }).select("+password");
 
-        if (!admin) return next(new ErrorHandler("Invalid Email or Password", 400));
-
+        if (!admin) {
+            return next(new ErrorHandler("User not found", 400));
+        }
         const isMatch = await bcrypt.compare(password, admin.password);
 
-        if (!isMatch)
+        if (!isMatch) {
             return next(new ErrorHandler("Invalid Email or Password", 400));
-
+        }
         sendCookie(admin, res, `Welcome back, ${admin.name}`, 200);
     } catch (error) {
+        console.error(error);
         next(error);
+
     }
 };
 
@@ -75,7 +80,9 @@ const adminRegister = async (req, res, next) => {
 
         let admin = await Admin.findOne({ email });
 
-        if (admin) return next(new ErrorHandler("User Already Exist", 400));
+        if (admin) {
+            return next(new ErrorHandler("User Already Exist", 400));
+        }
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -87,13 +94,25 @@ const adminRegister = async (req, res, next) => {
     }
 };
 
-// const getMyProfile = (req, res) => {
-//     res.status(200).json({
-//       success: true,
-//       user: req.user,
-//     });
-// };
-  
+
+const getProfile = async (req, res) => {
+    // const id = "myid";
+    // const { token } = req.cookies;
+    // // console.log(token);
+    // if (!token) {
+    //     return res.status(404).json({
+    //         success: false,
+    //         message: "Login First",
+    //     })
+    // }
+    // const decoded = jwt.verify(token, "abcd");
+    // const admin = await Admin.findById(decoded._id);
+    res.status(200).json({
+        success: true,
+        admin: req.admin,
+    });
+};
+
 
 const getAdminDetail = async (req, res) => {
     try {
@@ -111,5 +130,27 @@ const getAdminDetail = async (req, res) => {
 }
 
 
+const allAdmins = async (req, res) => {
+    const admins = await Admin.find({});
+    res.json(
+        {
+            success: true,
+            admins,
+        });
+};
 
-module.exports = { adminLogIn, getAdminDetail, adminRegister };
+const logout = (req, res) => {
+    res
+        .status(200)
+        .cookie("token", "", {
+            expires: new Date(Date.now()),
+            sameSite: process.env.NODE_ENV === "Develpoment" ? "lax" : "none",
+            secure: process.env.NODE_ENV === "Develpoment" ? false : true,
+        })
+        .json({
+            success: true,
+            admin: req.admin,
+        });
+};
+
+module.exports = { adminLogIn, getAdminDetail, getProfile, adminRegister, logout, allAdmins };
