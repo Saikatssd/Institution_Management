@@ -8,16 +8,19 @@ import {
   Route,
   Navigate
 } from 'react-router-dom';
+// import { useCookies } from 'react-cookie'
 import AdminHome from './pages/Admin/AdminHome';
-import AdminContainer from './container/AdminContainer';
-import Dashboard from './components/Dashboard';
+// import AdminContainer from './container/AdminContainer';
+// import Dashboard from './components/Dashboard';
 import TeacherDashboard from './pages/Teacher/TeacherDashboard';
 import StudentDashboard from './pages/Student/StudentDashboard';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminLogin from './pages/Admin/AdminLogin';
+import { Toaster } from 'react-hot-toast';
+// import { AuthProvider } from './AuthContext';
 
 function App() {
-
+  // const [cookie, setCookie] = useCookies(["token"])
   return (
     <>
       <Router>
@@ -29,6 +32,7 @@ function App() {
           <Route exact path="/student" element={<StudentDashboard />} />
           <Route path="*" element={<Navigate to="/" />}></Route>
         </Routes>
+        <Toaster />
       </Router>
     </>
   )

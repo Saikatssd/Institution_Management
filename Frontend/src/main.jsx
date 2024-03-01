@@ -1,12 +1,31 @@
-import React from 'react'
+import React, { useState, createContext } from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
-import { Toaster } from 'react-hot-toast';
+import store from './Store.jsx'
+import { Provider } from 'react-redux'
+
+
+// export const server = 'http://localhost:5000'
+
+// export const Context = createContext({ isAuthenticated: false })
+
+// const AppWrapper = () => {
+//   const [isAuthenticated, setIsAuthenticated] = useState(false)
+//   return (
+//     <Context.Provider value={{
+//       isAuthenticated, setIsAuthenticated,
+//     }}>
+//       <App />
+//     </Context.Provider>
+//   )
+// }
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <App />
-    <Toaster position="top-right" reverseOrder={false} />
-  </React.StrictMode>,
+  <Provider store={store}>
+    {/* <AlertProvider template={AlertTemplate} {...option}> */}
+      <App />
+    {/* </AlertProvider> */}
+  </Provider>,
 )
