@@ -1,4 +1,4 @@
-// AttendancePage.js
+
 import React, { useState, useEffect } from 'react';
 
 const AttendancePage = () => {
@@ -9,8 +9,7 @@ const AttendancePage = () => {
   const currentDate = new Date().toLocaleDateString();
 
   useEffect(() => {
-    // Fetch classes from your backend or any other source
-    // For now, I'll assume you have a list of classes with student details
+    
     const classesList = [
         { className: 'DBMS CS ', students: [{ roll: '001', name: 'Student 1' }, { roll: '002', name: 'Student 2' }/* Add more students */] },
         { className: 'DBMS IT', students: [{ roll: '101', name: 'Student 101' }, ] },
@@ -81,7 +80,6 @@ const AttendancePage = () => {
     <div className="container mx-auto my-8">
       <h1 className="text-4xl font-bold text-center mb-6">Attendance Page</h1>
 
-      {/* Display class buttons */}
       <div className="flex  space-x-4 mb-4">
         {classes.map((classItem, index) => (
           <button
@@ -94,7 +92,7 @@ const AttendancePage = () => {
         ))}
       </div>
 
-      {/* Display student attendance for the selected class */}
+    
       {selectedClass && (
          <div className="overflow-x-auto">
          <table className="w-full mb-6">
@@ -131,7 +129,6 @@ const AttendancePage = () => {
        Save Attendance
      </div>
 
-      {/* Display saved attendance for the selected class and current date */}
       {renderSavedAttendance()}
     </div>
   );

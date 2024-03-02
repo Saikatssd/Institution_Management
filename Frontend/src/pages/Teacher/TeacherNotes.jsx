@@ -1,20 +1,19 @@
-// TeacherNotes.js
+
 import React, { useState } from 'react';
 const classesList = [
     { className: 'DBMS CS' },
     { className: 'DBMS IT' },
     { className: 'MATH CS' },
     { className: 'MATH IT' },
-    // Add more classes as needed
   ];
 const TeacherNotes = () => {
    
   const [files, setFiles] = useState([]);
-  const [selectedClass, setSelectedClass] = useState(''); // State to store selected class
-  const [classNotes, setClassNotes] = useState({}); // State to store notes for each class
+  const [selectedClass, setSelectedClass] = useState(''); 
+  const [classNotes, setClassNotes] = useState({});
 
   
-    // Check if a class is selected before allowing file uploads
+    
     const onFileChange = (e) => {
         if (!selectedClass) {
           alert('Please select a class before uploading notes.');
@@ -41,7 +40,7 @@ const TeacherNotes = () => {
           [selectedClass]: [...(prevNotes[selectedClass] || []), ...files],
         }));
     
-        // Reset files after upload
+       
         setFiles([]);
       };
  
@@ -77,10 +76,8 @@ const TeacherNotes = () => {
 
   return (
     <div className="container mx-auto p-4">
-      {/* Class Selection */}
       <div className="mb-4">
         <label htmlFor="class">Select Class:</label>
-        {/* Use map to dynamically generate class options */}
         <select
           id="class"
           onChange={(e) => setSelectedClass(e.target.value)}
@@ -94,9 +91,7 @@ const TeacherNotes = () => {
           ))}
         </select>
       </div>
-               {/* Upload Button */}
-      
-      {/* File Upload */}
+     
       <div className="mb-4">
         <label htmlFor="file">Upload PDF:</label>
         <input
@@ -110,14 +105,12 @@ const TeacherNotes = () => {
       <button className="bg-blue-500 text-white m-2 p-2 rounded-md cursor-pointer" onClick={uploadNotes}>
         Upload Notes
       </button>
-      {/* Display PDFs for the selected class */}
       {classNotes[selectedClass] && classNotes[selectedClass].length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {classNotes[selectedClass].map((file, index) => (
             <div key={index} className="bg-white rounded-lg p-4 shadow-md">
               <span className="block text-lg font-semibold mb-2">{file.name}</span>
               <div className="flex space-x-2">
-                {/* Modify buttons to work with selectedClass */}
                 <button
                   onClick={() => viewPdf(file)}
                   className="material-icons text-green-500 cursor-pointer"

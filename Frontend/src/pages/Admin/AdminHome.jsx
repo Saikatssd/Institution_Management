@@ -1,10 +1,10 @@
 import React from 'react'
-import AdminContainer from '../../container/AdminContainer'
+// import AdminContainer from '../../container/AdminContainer'
 
 export default function AdminHome() {
   return (
     <>
-    <AdminContainer />
+    {/* <AdminContainer /> */}
     </>
   )
 }

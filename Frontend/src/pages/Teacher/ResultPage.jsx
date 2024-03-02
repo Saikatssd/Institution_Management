@@ -14,12 +14,9 @@ const ResultPage = () => {
   const [updatedResults, setUpdatedResults] = useState([]);
 
   const handleUpdateResult = () => {
-    // Make a copy of the current results
+
     const currentResults = [...results];
 
-    // You can save the currentResults to your backend or perform any other necessary actions
-
-    // Update the updatedResults state for the specific class
     setUpdatedResults((prevUpdatedResults) => ({
       ...prevUpdatedResults,
       [selectedClass.className]: currentResults,
@@ -33,7 +30,7 @@ const ResultPage = () => {
     <div className="container mx-auto my-8">
       <h1 className="text-4xl font-bold text-center mb-6">Result Page</h1>
 
-      {/* Display class buttons */}
+
       <div className="flex space-x-4 mb-4">
         {classesList.map((classItem) => (
           <button
@@ -88,7 +85,7 @@ const ResultPage = () => {
         </button>
       </div>
 
-      {/* Display updated result array for the specific class */}
+    
 {updatedResults[selectedClass.className] && (
   <div className="mt-6">
     <h2 className="text-2xl font-bold mb-2">Updated Results for {selectedClass.className}:</h2>
