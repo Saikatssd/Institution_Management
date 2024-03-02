@@ -11,9 +11,9 @@ const teacherSchema = new mongoose.Schema({
     type: String,
     default: "teacher"
 },
-  courses: [{
-    courseId: { type: mongoose.Schema.Types.ObjectId, ref: 'Course', required: true },
-    courseName: { type: String, required: true },
+  subject: [{
+    subjectId: { type: mongoose.Schema.Types.ObjectId, ref: 'Subject', required: true },
+    subjectName: { type: String, required: true },
   }],
   
 });
