@@ -191,14 +191,16 @@ const AdminLogin = () => {
             }
             else {
                 toast.error(error);
-                dispatch(clearErrors());
+                await dispatch(clearErrors());
             }
         }
         catch (error) {
             toast.error(error);
-            dispatch(clearErrors());
+            await dispatch(clearErrors());
         };
     };
+
+    //Normal handler
     // const handleLogin = async (e) => {
     //     e.preventDefault();
 
@@ -267,6 +269,8 @@ const AdminLogin = () => {
                             >
                                 Login
                             </button>
+                            <h4 className='text-center'>Or</h4>
+                            <Link to="/AdminReg" className='text-blue-600 hover:underline flex justify-center'>Sign Up</Link>
                         </form>
                     </div>
                 </div>
