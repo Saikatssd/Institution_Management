@@ -22,9 +22,9 @@ const { adminRegister, adminLogIn, allAdmins, getAdminDetail, getProfile, logout
 //     removeStudentAttendanceBySubject,
 //     removeStudentAttendance } = require('../controllers/student_controller.js');
 // const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
-// const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
-
-
+ const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
+const{addDept,getDept}=require('../controllers/teacher-controller.js');
+const{addSubject,getSubject,getSubjectDeptYearwise}=require('../controllers/teacher-controller.js');
 
 // Admin
 router.post('/AdminReg', adminRegister);
@@ -119,5 +119,31 @@ router.get("/Admin/:id", getAdminDetail)
 // router.delete("/Subject/:id", deleteSubject)
 // router.delete("/Subjects/:id", deleteSubjects)
 // router.delete("/SubjectsClass/:id", deleteSubjectsByClass)
+
+
+
+
+// For teachers//
+
+router.post('/teachers',teacherRegister); 
+
+router.get('/teachers', getTeachers);
+
+
+//For courses
+router.post('/subject', addSubject);
+router.get('/subject', getSubject);
+
+
+//For Department
+router.post('/departments', addDept);
+router.get('/departments', getDept);
+
+//Department,year,sem wise all Subject available
+router.get('/subject/byDepartment/:departmentName/:year/:semester', getSubjectDeptYearwise);
+   
+  
+
+
 
 module.exports = router;
