@@ -29,25 +29,24 @@ import {
 } from "../Constants/userConstant";
 
 // action for login
-export const login = (email, password) => async (dispatch) => {
-  // console.log(email, password)
-  console.log("Login action started");
+export const login = (fields, role) => async (dispatch) => {
+  // console.log("Login action started");
   try {
     dispatch({ type: LOGIN_REQUEST, });
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       withCredentials: true,
     };
 
     const { data } = await axios.post(
-      "http://localhost:5000/AdminLogin",
-      { email, password },
+      `http://localhost:5000/${role}Login`,
+      fields,
       config
     );
-    console.log("Login success:", data);
+    // console.log("Login success:", data);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: data.user,
@@ -67,7 +66,7 @@ export const login = (email, password) => async (dispatch) => {
 
 //register user actions
 
-export const register = (userData) => async (dispatch) => {
+export const register = (fields, role) => async (dispatch) => {
   try {
     dispatch({ type: REGISTER_USER_REQUEST, });
     const config = {
@@ -75,7 +74,7 @@ export const register = (userData) => async (dispatch) => {
         "Content-Type": "multipart/form-data",
       },
     };
-    const { data } = await axios.post("http://localhost:4000/api/v1/users/signup", userData, config);
+    const { data } = await axios.post(`http://localhost:5000/${role}Reg`, fields, config);
     dispatch({
       type: REGISTER_USER_SUCCESS,
       payload: data.user,

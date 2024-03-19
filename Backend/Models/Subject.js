@@ -8,6 +8,6 @@ const subjectSchema = new mongoose.Schema({
   semester: { type: String, required: true },
 });
 
-const subject = mongoose.model('Subject', subjectSchema);
+const Subject = mongoose.model('Subject', subjectSchema);
 
 module.exports = Subject;

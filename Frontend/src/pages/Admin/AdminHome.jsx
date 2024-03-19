@@ -5,6 +5,7 @@ export default function AdminHome() {
   return (
     <>
     {/* <AdminContainer /> */}
+    AdminHome
     </>
   )
 }

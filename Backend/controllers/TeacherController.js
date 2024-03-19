@@ -1,9 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const Teacher = require('./Models/Teacher');
-const subject = require('./Models/subject');
-const Department = require('./Models/Department');
+const Teacher = require('../models/Teacher');
+const subject = require('../models/subject');
+const Department = require('../models/Department');
 const router = express.Router();
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -143,4 +143,4 @@ const addDept = async (req, res) => {
     }
   };
   
-module.exports = router
+module.exports = {teacherRegister,getTeachers,addSubject,getSubject,addDept,addDept,getDept,getSubjectDeptYearwise}

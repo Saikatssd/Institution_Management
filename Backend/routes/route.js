@@ -22,9 +22,9 @@ const { adminRegister, adminLogIn, allAdmins, getAdminDetail, getProfile, logout
 //     removeStudentAttendanceBySubject,
 //     removeStudentAttendance } = require('../controllers/student_controller.js');
 // const { subjectCreate, classSubjects, deleteSubjectsByClass, getSubjectDetail, deleteSubject, freeSubjectList, allSubjects, deleteSubjects } = require('../controllers/subject-controller.js');
- const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/teacher-controller.js');
-const{addDept,getDept}=require('../controllers/teacher-controller.js');
-const{addSubject,getSubject,getSubjectDeptYearwise}=require('../controllers/teacher-controller.js');
+ const { teacherRegister, teacherLogIn, getTeachers, getTeacherDetail, deleteTeachers, deleteTeachersByClass, deleteTeacher, updateTeacherSubject, teacherAttendance } = require('../controllers/TeacherController.js');
+const{addDept,getDept}=require('../controllers/TeacherController.js');
+const{addSubject,getSubject,getSubjectDeptYearwise}=require('../controllers/TeacherController.js');
 
 // Admin
 router.post('/AdminReg', adminRegister);

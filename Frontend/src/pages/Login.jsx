@@ -158,41 +158,48 @@
 
 
 
-import axios from 'axios';
-import React, { useState } from 'react';
-import Loader from "../Layout/Loader";
+import React, { useState, useEffect } from 'react';
+import Loader from "./Layout/Loader";
 
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from "react-hot-toast";
-import { login, clearErrors } from '../../Actions/userAction'
+import { login, clearErrors } from '../Actions/userAction'
 
-const AdminLogin = () => {
+const Login = ({role}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isAuthenticated, loading, error } = useSelector((state) => state.auth);
-    console.log("Authenticated:" + isAuthenticated);
-    console.log("Error:" + error);
+    // console.log("Authenticated:" + isAuthenticated);
+    // console.log("Error:" + error);
+
+    //use effect
+    useEffect(() => {
+        if (isAuthenticated) {
+            window.location.href = "/admin";
+        }
+        if (error) {
+            toast.error(error);
+            dispatch(clearErrors());
+        }
+    }, [dispatch,isAuthenticated, error]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        // dispatch(login(email, password)).then(() => {
+        const fields = { email, password };
         try {
-            await dispatch(login(email, password));
-            console.log("After Dispatch:");
+            await dispatch(login(fields, role));
+            
 
-            console.log("Authen after:" + isAuthenticated)
-            console.log("Error after:" + error);
-
-            if (isAuthenticated) {
-                window.location.href = "/admin";
-            }
-            else {
-                toast.error(error);
-                await dispatch(clearErrors());
-            }
+            // if (isAuthenticated) {
+            //     navigate('/admin');
+            // }
+            // else {
+            //     toast.error(error);
+            //     dispatch(clearErrors());
+            // }
         }
         catch (error) {
             toast.error(error);
@@ -236,7 +243,7 @@ const AdminLogin = () => {
 
                 <div className="min-h-screen flex items-center justify-center bg-gray-100">
                     <div className="bg-white p-8 rounded shadow-md w-96">
-                        <h2 className="text-2xl font-bold mb-6">Admin Login</h2>
+                        <h2 className="text-2xl font-bold mb-6">{role} Login</h2>
                         <form>
                             <div className="mb-4">
                                 <label htmlFor="email" className="block text-gray-600 font-semibold mb-2">Email</label>
@@ -270,7 +277,7 @@ const AdminLogin = () => {
                                 Login
                             </button>
                             <h4 className='text-center'>Or</h4>
-                            <Link to="/AdminReg" className='text-blue-600 hover:underline flex justify-center'>Sign Up</Link>
+                            <Link to="/adminReg" className='text-blue-600 hover:underline flex justify-center'>Sign Up</Link>
                         </form>
                     </div>
                 </div>
@@ -279,4 +286,4 @@ const AdminLogin = () => {
     );
 };
 
-export default AdminLogin;
+export default Login;

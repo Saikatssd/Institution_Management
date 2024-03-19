@@ -124,7 +124,7 @@ const AdminRegister = () => {
                             </button>
 
                             <h4 className='text-center'>Or</h4>
-                            <Link to="/AdminLogin" className='text-blue-600 hover:underline flex justify-center'>Log In</Link>
+                            <Link to="/adminLogin" className='text-blue-600 hover:underline flex justify-center'>Log In</Link>
                         </form>
                     </div>
                 </div>
