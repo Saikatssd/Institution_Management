@@ -33,6 +33,12 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 
+// app.get('/logout', (req, res) => {
+//   res.clearCookie('authToken'); // Replace 'authToken' with your cookie name
+//   res.status(200).json({ message: 'Logout successful' });
+// });
+
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

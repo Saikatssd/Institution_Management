@@ -56,9 +56,9 @@ export default function AdminDashboard() {
                     </Link>
                     <ul className="admin-menu">
                         <Routes>
-                            <Route path="/" element={<AdminHome />} />
+                            {/* <Route path="/" element={<AdminHome />} />
                             <Route path='*' element={<Navigate to="/" />} />
-                            <Route path="/admin/dashboard" element={<AdminHome />} />
+                            <Route path="/admin/dashboard" element={<AdminHome />} /> */}
                             {/* <Route path="/Admin/profile" element={<AdminProfile />} /> */}
                             {/* <Route path="/Admin/complains" element={<SeeComplains />} /> */}
 
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
                             {/* <Route path="/Admin/class/addstudents/:id" element={<AddStudent situation="Class" />} /> */}
 
                             {/* Student */}
-                            <Route path="/admin/addstudents" element={<AddStudent situation="Student" />} />
+                            <Route path="addstudents" element={<AddStudent situation="Student" />} />
                             {/* <Route path="/Admin/students" element={<ShowStudents />} /> */}
                             {/* <Route path="/Admin/students/student/:id" element={<ViewStudent />} /> */}
                             {/* <Route path="/Admin/students/student/attendance/:id" element={<StudentAttendance situation="Student" />} /> */}
@@ -106,7 +106,7 @@ export default function AdminDashboard() {
                         </li>
                         <li>
 
-                            <Link to='/admin/addstudents'>
+                            <Link to='addstudents'>
                                 <span>Manage Students</span>
                             </Link>
 

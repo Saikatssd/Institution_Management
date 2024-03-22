@@ -29,7 +29,6 @@ function App() {
       
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route exact path="/admin/*" element={<AdminDashboard/>}/>
 
 
             
@@ -38,6 +37,7 @@ function App() {
           <Route path="/studentLogin" element={<Login role="Student" />} />
           <Route path="/teacherLogin" element={<Login role="Teacher" />} />
 
+          <Route exact path="/admin/*" element={<AdminHome/>}/>
 
           {/* <Route exact path="/adminLogin" element={<Login />}/> */}
           <Route exact path="/adminReg" element={<AdminRegister/>}/>

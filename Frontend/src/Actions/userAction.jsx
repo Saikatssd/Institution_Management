@@ -28,6 +28,7 @@ import {
   CLEAR_ERRORS,
 } from "../Constants/userConstant";
 
+import Cookies from 'js-cookie';
 // action for login
 export const login = (fields, role) => async (dispatch) => {
   // console.log("Login action started");
@@ -230,10 +231,14 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
 
 //logout actions
 
-export const logout = () => async (dispatch) => {
+export const logout = (role) => async (dispatch) => {
   try {
-    await axios.get("http://localhost:4000/api/v1/users/logout");
+    await axios.get(`http://localhost:5000/${role}Logout`);
+
+    Cookies.remove('token');
+
     dispatch({ type: LOGOUT_SUCCESS, });
+
   } catch (error) {
     dispatch({
       type: LOGOUT_FAIL,

@@ -172,13 +172,13 @@ const Login = ({role}) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isAuthenticated, loading, error } = useSelector((state) => state.auth);
-    // console.log("Authenticated:" + isAuthenticated);
-    // console.log("Error:" + error);
+
 
     //use effect
     useEffect(() => {
         if (isAuthenticated) {
             window.location.href = "/admin";
+            // toast.success(message);
         }
         if (error) {
             toast.error(error);
@@ -190,7 +190,8 @@ const Login = ({role}) => {
         e.preventDefault();
         const fields = { email, password };
         try {
-            await dispatch(login(fields, role));
+            const data = await dispatch(login(fields, role));
+            console.log(data)
             
 
             // if (isAuthenticated) {
